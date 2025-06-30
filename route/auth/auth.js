@@ -120,8 +120,12 @@ router.post('/login', async (req, res) => {
       sameSite: 'lax'
     });
 
-    res.json({ message: '✅ Login successful', role: user.role });
-  } catch (err) {
+    res.json({
+      message: '✅ Login successful',
+      role: user.role,
+      token
+    });
+    }catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
@@ -144,5 +148,4 @@ router.get('/status', (req, res) => {
     res.json({ loggedIn: false });
   }
 });
-
 export default router;
