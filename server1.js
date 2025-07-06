@@ -27,17 +27,32 @@ const MONGO_URL = process.env.MONGO_URL;
 
 console.log('MONGO_URL:', MONGO_URL);
 
-// ✅ Proper CORS Setup for Frontend on localhost:3000
+// ✅ Updated CORS Setup to Allow Local, Render, and Postman
+const allowedOrigins = [
+  'http://localhost:3000', // Local frontend
+  'https://startup-47ex.onrender.com' // Render deployed frontend or other clients
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000',  // Must match your frontend URL
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed'));
+    }
+  },
   credentials: true
 }));
 
-app.use(express.json({strict:false}));
+// ✅ JSON Body Parser and Cookie Parser
+app.use(express.json());
 app.use(cookieParser());
 
 // ✅ MongoDB Connection
-mongoose.connect(MONGO_URL)
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
@@ -50,12 +65,12 @@ app.get('/api', (req, res) => {
   res.send('✅ NyayaSaathi API is Ready. Use /api/{routes} to access endpoints.');
 });
 
-// ✅ Test Protected Route with Cookie-based JWT
+// ✅ Protected Route with JWT Middleware
 app.get('/api/protected', authMiddleware, (req, res) => {
   res.json({ message: '✅ You accessed a protected route!', user: req.user });
 });
 
-// ✅ API Routes
+// ✅ All API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/kiosks', kioskRoutes);
