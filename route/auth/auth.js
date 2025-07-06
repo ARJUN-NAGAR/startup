@@ -98,13 +98,24 @@ const JWT_SECRET = process.env.JWT_SECRET || 'nyayasaathi_secret_key';
 
 // Login Route - Sets Token in HTTP-Only Cookie
 router.post('/login', async (req, res) => {
+  console.log("🔔 Incoming Login Request Body:", req.body);
+
+  if (!req.body || !req.body.email || !req.body.password) {
+    return res.status(400).json({ message: "Email and password are required" });
+  }
+
   const { email, password } = req.body;
+  console.log(`🔍 Looking for user with email: ${email}`);
 
   try {
     const user = await User.findOne({ email, isDeleted: false });
+    console.log("✅ User Lookup Result:", user);
+
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     const isMatch = await user.comparePassword(password);
+    console.log("🔑 Password Match:", isMatch);
+
     if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
 
     const token = jwt.sign(
@@ -116,7 +127,7 @@ router.post('/login', async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
-      secure: false, // true in production with HTTPS
+      secure: false, // set true in production with HTTPS
       sameSite: 'lax'
     });
 
@@ -125,7 +136,9 @@ router.post('/login', async (req, res) => {
       role: user.role,
       token
     });
-    }catch (err) {
+    
+  } catch (err) {
+    console.error("💥 Login Error:", err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -144,8 +157,9 @@ router.get('/status', (req, res) => {
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     res.json({ loggedIn: true, user: decoded });
-  } catch {
+  } catch (err) {
     res.json({ loggedIn: false });
   }
 });
+
 export default router;
