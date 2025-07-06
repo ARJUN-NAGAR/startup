@@ -33,6 +33,15 @@ const allowedOrigins = [
   'https://startup-47ex.onrender.com',  // Render deployed frontend
 ];
 
+<<<<<<< HEAD
+=======
+// ✅ Updated CORS Setup to Allow Local, Render, and Postman
+const allowedOrigins = [
+  'http://localhost:3000', // Local frontend
+  'https://startup-47ex.onrender.com' // Render deployed frontend or other clients
+];
+
+>>>>>>> 6c8d2ff0d4bccefb3f899a0c4fe27d580a2828c9
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -48,8 +57,16 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+<<<<<<< HEAD
 // ✅ MongoDB Connection with Updated Connection String
 mongoose.connect(MONGO_URL)
+=======
+// ✅ MongoDB Connection
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+>>>>>>> 6c8d2ff0d4bccefb3f899a0c4fe27d580a2828c9
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
