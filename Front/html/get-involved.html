@@ -1,0 +1,131 @@
+   <!-- <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="../css/style.css">
+       <title>Get Involved - NyayaSaathi</title>
+   </head>
+   <body>
+       <header>
+           <img src="../assets/img/logo.png" alt="NyayaSaathi Logo">
+           <nav>
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="about.html">About Us</a></li>
+                   <li><a href="how-it-works.html">How It Works</a></li>
+                   <li><a href="problems-we-solve.html">Problems We Solve</a></li>
+                   <li><a href="opportunity.html">Why Now</a></li>
+                   <li><a href="competitive.html">Competitive Advantage</a></li>
+                   <li><a href="model.html">Business Model</a></li>
+                   <li><a href="contact.html">Contact</a></li>
+               </ul>
+           </nav>
+       </header>
+       <main>
+           <h2>Get Involved</h2>
+           <ul>
+               <li>Become a Franchisee</li>
+               <li>Partner with Us (NGOs, Legal Services)</li>
+               <li>Join as a Nyaya Mitra (Paralegal)</li>
+           </ul>
+       </main>
+       <footer>
+           <p>© 2023 NyayaSaathi. All rights reserved.</p>
+       </footer>
+       <script src="../js/main.js"></script>
+   </body>
+   </html>
+    -->
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="../css/style.css">
+       <title>Get Involved - NyayaSaathi</title>
+   </head>
+   <body>
+       <header>
+           <img src="../assets/img/logo.png" alt="NyayaSaathi Logo">
+           <nav>
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="about.html">About Us</a></li>
+                   <li><a href="how-it-works.html">How It Works</a></li>
+                   <li><a href="problems-we-solve.html">Problems We Solve</a></li>
+                   <li><a href="opportunity.html">Why Now</a></li>
+                   <li><a href="competitive.html">Competitive Advantage</a></li>
+                   <li><a href="model.html">Business Model</a></li>
+                   <li><a href="contact.html">Contact</a></li>
+               </ul>
+           </nav>
+       </header>
+       <main class="get-involved">
+           <section class="opportunity-cards">
+               <h2 class="section-title">Get Involved</h2>
+               <div class="cards-container">
+                   <div class="opportunity-card">
+                       <h3>Become a Franchisee</h3>
+                       <p>Run a NyayaSaathi kiosk in your community...</p>
+                       <button class="cta-button">Learn More</button>
+                   </div>
+                   <div class="opportunity-card">
+                       <h3>Partner With Us</h3>
+                       <p>NGOs and legal service partners...</p>
+                       <button class="cta-button">Partner Now</button>
+                   </div>
+                   <div class="opportunity-card">
+                       <h3>Become Nyaya Mitra</h3>
+                       <p>Join our network of paralegals...</p>
+                       <button class="cta-button">Apply Now</button>
+                   </div>
+               </div>
+           </section>
+       </main>
+       <footer>
+           <p>© <span id="currentYear"></span> NyayaSaathi. All rights reserved.</p>
+       </footer>
+       <script>
+           // Dynamic copyright year
+           document.getElementById('currentYear').textContent = new Date().getFullYear();
+       </script>
+       <script src="../js/main.js"></script>
+       <script>
+           // Highlight current page in nav
+           document.addEventListener('DOMContentLoaded', () => {
+               const currentPage = window.location.pathname.split('/').pop();
+               document.querySelectorAll('nav a').forEach(link => {
+                   if (link.getAttribute('href') === currentPage) {
+                       link.classList.add('active');
+                   }
+               });
+           });
+       </script>
+       <script>
+           // Enhance opportunity cards
+           document.addEventListener('DOMContentLoaded', () => {
+               // Card click handling
+               const cards = document.querySelectorAll('.opportunity-card');
+               cards.forEach(card => {
+                   card.addEventListener('click', (e) => {
+                       if (!e.target.classList.contains('cta-button')) {
+                           card.querySelector('.cta-button').click();
+                       }
+                   });
+               });
+               
+               // Form submission handling
+               document.querySelectorAll('.cta-button').forEach(button => {
+                   button.addEventListener('click', (e) => {
+                       e.stopPropagation();
+                       const action = button.textContent.trim().replace(' ', '-').toLowerCase();
+                       alert(`Redirecting to ${action} form...`);
+                       // window.location.href = `${action}-form.html`;
+                   });
+               });
+           });
+       </script>
+   </body>
+   </html>
+   

@@ -19,6 +19,7 @@ import documentRoutes from './route/documentRoutes.js';
 import subscriptionRoutes from './route/subscriptionRoutes.js';
 import citizenRoutes from './route/citizensRoutes.js';
 import authRoutes from './route/auth/auth.js';
+import registerRoutes from './route/registerRoutes.js';
 import authMiddleware from './middleware/authMiddleware.js';
 
 const app = express();
@@ -29,8 +30,9 @@ console.log('🌐 MONGO_URL:', MONGO_URL);
 
 // ✅ Updated CORS Setup to Allow Local, Render, and Postman
 const allowedOrigins = [
-  'http://localhost:3000',              // Local frontend
-  'https://startup-47ex.onrender.com',  // Render deployed frontend
+  'http://localhost:3000',
+  'http://localhost:5173', // Vite default port
+  'https://startup-47ex.onrender.com', // Render deployed frontend
 ];
 
 app.use(cors({
@@ -48,7 +50,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ MongoDB Connection with Updated Connection String
+// ✅ MongoDB Connection
 mongoose.connect(MONGO_URL)
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
@@ -79,6 +81,7 @@ app.use('/api/voicequeries', voiceQueryRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/citizens', citizenRoutes);
+app.use('/api', registerRoutes); // registerRoute should be after /api to catch /register
 
 // ✅ Server Listener
 app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));

@@ -1,0 +1,60 @@
+/* AboutPage.css */
+.about-page {
+  padding: 2rem 5%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfaf6;
+  color: #2c2c2c;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.about-header h1 {
+  font-size: 2.5rem;
+  color: #bf5700;
+}
+
+.about-header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.mission-vision {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.mission, .vision {
+  width: 48%;
+  background-color: #fff4e6;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.team {
+  text-align: center;
+}
+
+.team h2 {
+  margin-bottom: 2rem;
+  color: #006400;
+}
+
+.team-members {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.member {
+  background-color: #ffe8cc;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  width: 200px;
+}
