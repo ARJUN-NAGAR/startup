@@ -3,40 +3,33 @@
 @tailwind utilities;
 
 /* NyayaSaathi Design System - Warm, trustworthy colors for rural India accessibility */
-
 @layer base {
   :root {
     /* Base colors - warm and welcoming */
     --background: 35 15% 98%;
     --foreground: 20 12% 15%;
 
-    /* Card colors - clean with subtle warmth */
     --card: 0 0% 100%;
     --card-foreground: 20 12% 15%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 20 12% 15%;
 
-    /* Primary - Saffron/Orange for trust and Indian identity */
     --primary: 25 95% 53%;
     --primary-foreground: 0 0% 100%;
     --primary-light: 25 85% 65%;
     --primary-dark: 25 85% 40%;
 
-    /* Secondary - Deep green for growth and stability */
     --secondary: 145 63% 42%;
     --secondary-foreground: 0 0% 100%;
     --secondary-light: 145 50% 55%;
 
-    /* Muted colors with warm undertones */
     --muted: 35 25% 95%;
     --muted-foreground: 25 8% 45%;
 
-    /* Accent - Earth tones for warmth */
     --accent: 30 40% 88%;
     --accent-foreground: 20 12% 15%;
 
-    /* Utility colors */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
@@ -44,48 +37,35 @@
     --input: 35 20% 92%;
     --ring: 25 95% 53%;
 
-    /* Voice interaction highlight */
     --voice-accent: 200 100% 70%;
     --voice-accent-foreground: 0 0% 100%;
 
-    /* Trust indicators */
     --success: 145 63% 42%;
     --success-foreground: 0 0% 100%;
     --warning: 45 93% 47%;
     --warning-foreground: 0 0% 100%;
 
-    /* Gradients for visual appeal */
     --gradient-hero: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(145 63% 42%) 100%);
     --gradient-warm: linear-gradient(180deg, hsl(35 15% 98%) 0%, hsl(35 25% 95%) 100%);
     --gradient-trust: linear-gradient(45deg, hsl(25 85% 65%) 0%, hsl(25 95% 53%) 100%);
 
-    /* Shadows with warm undertones */
     --shadow-warm: 0 4px 20px hsl(25 40% 85%);
     --shadow-strong: 0 8px 30px hsl(25 30% 75%);
     --shadow-voice: 0 0 20px hsl(200 100% 70% / 0.3);
 
-    /* Border radius for accessibility */
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* Dark mode with warm undertones for better accessibility */
     --background: 20 12% 8%;
     --foreground: 35 15% 95%;
 
@@ -119,14 +99,13 @@
     --shadow-warm: 0 4px 20px hsl(0 0% 0% / 0.3);
     --shadow-strong: 0 8px 30px hsl(0 0% 0% / 0.5);
   }
-}
 
-@layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border)); /* ✅ fixed */
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background)); /* ✅ fixed */
+    color: hsl(var(--foreground));             /* ✅ fixed */
   }
 }
