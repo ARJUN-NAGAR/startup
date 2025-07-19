@@ -32,6 +32,7 @@ console.log('🌐 MONGO_URL:', MONGO_URL);
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173', // Vite default port
+    'http://localhost:8081', 
   'https://startup-47ex.onrender.com', // Render deployed frontend
 ];
 
